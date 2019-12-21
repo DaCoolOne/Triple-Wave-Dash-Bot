@@ -132,7 +132,7 @@ class Test_Maneuver(Action):
             agent.controller_state.boost = False
             agent.controller_state.throttle = 0
             
-            if my_car.velocity.length() <= 0.5:
+            if my_car.velocity.length() <= 5 and packet.game_info.is_round_active:
                 agent.set_maneuver(Triple_Dash())
         
         return self

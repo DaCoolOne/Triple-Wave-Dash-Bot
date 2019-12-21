@@ -30,14 +30,14 @@ class Bowtie(BaseAgent):
         
         # self.renderer.begin_rendering()
         
-        if not self.has_removed_ball:
+        self.controller_state = Controller()
+        self.packet.update(gtp)
+        
+        if not self.has_removed_ball and self.packet.game_info.is_round_active:
             ball_state = BallState(Physics(location=Vector3(0, 0, 3000)))
             game_state = GameState(ball=ball_state)
             self.set_game_state(game_state)
             self.has_removed_ball = True
-        
-        self.controller_state = Controller()
-        self.packet.update(gtp)
         
         if self.action is None:
             self.action = Test_Maneuver()
